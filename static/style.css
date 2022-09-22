@@ -33,3 +33,9 @@ body {
   border-top: 0.5em solid var(--color-accent);
   box-sizing: border-box;
 }
+
+@media (max-width: 80em) {
+  body {
+    margin: 0 0.5em;
+  }
+}
