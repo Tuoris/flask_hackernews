@@ -20,6 +20,10 @@ def pluralize(number, singular="", plural="s"):
 @app.route("/")
 def home_view():
     news_response = requests.get(NEWS_API_URL)
+
+    if not news_response.ok:
+        return ("Not found - API problem", 404)
+
     news = news_response.json()
 
     return render_template("news.html", news=news)
@@ -27,7 +31,14 @@ def home_view():
 
 @app.route("/<item_id>")
 def item_view(item_id):
+    if item_id in ["favicon.ico"]:
+        return ("Not found", 404)
+
     item_response = requests.get(f"{ITEMS_API_URL}/{item_id}")
+
+    if not item_response.ok:
+        return ("Not found - API problem", 404)
+
     item = item_response.json()
 
     return render_template("item.html", item=item)
