@@ -1,8 +1,10 @@
-from json import load
-
+import requests
 from flask import Flask, render_template
 
-from constants import ITEM_SAMPLE_FILENAME, NEWS_SAMPLE_FILENAME
+from constants import (
+    ITEMS_API_URL,
+    NEWS_API_URL,
+)
 
 app = Flask(__name__)
 
@@ -17,14 +19,15 @@ def pluralize(number, singular="", plural="s"):
 
 @app.route("/")
 def home_view():
-    with open(NEWS_SAMPLE_FILENAME, "r") as news_page_file:
-        news = load(news_page_file)
+    news_response = requests.get(NEWS_API_URL)
+    news = news_response.json()
+
     return render_template("news.html", news=news)
 
 
 @app.route("/<item_id>")
 def item_view(item_id):
-    print(item_id)
-    with open(ITEM_SAMPLE_FILENAME, "r") as item_page_file:
-        item = load(item_page_file)
+    item_response = requests.get(f"{ITEMS_API_URL}/{item_id}")
+    item = item_response.json()
+
     return render_template("item.html", item=item)
