@@ -10,9 +10,9 @@
   <body>
     {% for item in news %}
     <div class="item">
-      <h2>{{item.title}}</h2>
+      <h2><a class="title-link" href="{{ item.url }}">{{ item.title }}</a></h2>
       <div class="item-info">by {{ item.user }} {{ item.time_ago }}</div>
-      <a href="/{{ item.id }}">{{ item.comments_count }} comment{{ item.comments_count|pluralize }}</a>
+      <a class="comments-link" href="/{{ item.id }}">{{ item.comments_count }} comment{{ item.comments_count|pluralize }}</a>
     </div>
     <hr />
     {% endfor %}

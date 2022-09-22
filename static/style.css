@@ -2,6 +2,7 @@
   --text-color: #070707;
   --text-background: #f7f7f7;
   --color-accent: #ff6600;
+  --text-color-muted: #696969;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -9,6 +10,7 @@
     --text-color: #f7f7f7;
     --text-background: #070707;
     --color-accent: #ff6600;
+    --text-color-muted: #d1d1d1;
   }
 }
 
@@ -38,4 +40,24 @@ body {
   body {
     margin: 0 0.5em;
   }
+}
+
+a {
+  color: var(--text-color);
+}
+
+pre {
+  overflow: auto;
+  border: 1px solid var(--text-color-muted);
+  padding: 1em;
+}
+
+a:active,
+a:visited {
+  color: var(--text-color-muted);
+}
+
+.title-link,
+.comments-link {
+  text-decoration: none;
 }
