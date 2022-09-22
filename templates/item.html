@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <title>{{ item.title }}</title>
+  </head>
+  <body>
+    <h1>{{ item.title }}</h1>
+    <div class="item-info">by {{ item.user }} {{ item.time_ago }}</div>
+    <div class="comments">
+      <h2>Comments:</h2>
+      {% for comment in item.comments recursive %}
+      <div class="comment" style="padding-left: {{ comment.level * 10 }}px">
+        <div class="item-info">by {{ comment.user }} {{ comment.time_ago }}</div>
+        <div class="comment-content">{{ comment.content|safe }}</div>
+        {% if comment.comments %} {{ loop(comment.comments) }} {% else %} {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
