@@ -1,7 +1,3 @@
-run:
-	FLASK_APP=app.py flask run
-
-debug:
+all:
 	FLASK_APP=app.py flask --debug run
-
-all: debug
+	
