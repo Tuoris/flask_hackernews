@@ -14,6 +14,7 @@
       <div class="item-info">by {{ item.user }} {{ item.time_ago }}</div>
       <a href="/{{ item.id }}">{{ item.comments_count }} comment{{ item.comments_count|pluralize }}</a>
     </div>
+    <hr />
     {% endfor %}
   </body>
 </html>

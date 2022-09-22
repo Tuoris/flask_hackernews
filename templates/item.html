@@ -13,9 +13,10 @@
     <div class="comments">
       <h2>Comments:</h2>
       {% for comment in item.comments recursive %}
-      <div class="comment" style="padding-left: {{ comment.level * 10 }}px">
+      <div class="comment" style="padding-left: {{ comment.level * 2 }}em">
         <div class="item-info">by {{ comment.user }} {{ comment.time_ago }}</div>
         <div class="comment-content">{{ comment.content|safe }}</div>
+        <hr />
         {% if comment.comments %} {{ loop(comment.comments) }} {% else %} {% endif %}
       </div>
       {% endfor %}
