@@ -1,10 +1,9 @@
+from urllib.parse import urlparse
+
 import requests
 from flask import Flask, render_template
 
-from constants import (
-    ITEMS_API_URL,
-    NEWS_API_URL,
-)
+from constants import ITEMS_API_URL, NEWS_API_URL
 
 app = Flask(__name__)
 
@@ -15,6 +14,15 @@ def pluralize(number, singular="", plural="s"):
         return singular
     else:
         return plural
+
+
+@app.template_filter("short_link")
+def short_link(full_link):
+    hostname = urlparse(full_link).hostname
+    if hostname and hostname.startswith("www."):
+        return hostname.strip("www.")
+
+    return hostname
 
 
 @app.route("/")
