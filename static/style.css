@@ -95,7 +95,7 @@ a:visited {
 .item-info {
   display: grid;
   padding-left: calc(var(--font-size-large) * 0.4);
-  grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: auto 1fr max-content;
   align-items: center;
 }
 
