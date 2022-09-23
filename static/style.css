@@ -73,9 +73,12 @@ a:visited {
   color: var(--text-color-muted);
 }
 
+.items {
+  padding: 0 0.5rem;
+}
+
 .item {
   border-bottom: 1px solid var(--text-color-muted);
-  padding-bottom: calc(var(--font-size-normal) * 0.4);
 }
 
 .item-title {
@@ -85,7 +88,7 @@ a:visited {
 
 .title-link {
   display: block;
-  padding: calc(var(--font-size-large) * 0.4) 0.5rem;
+  padding: calc(var(--font-size-large) * 0.2) 0;
 }
 
 .short-link {
@@ -94,14 +97,13 @@ a:visited {
 }
 
 .item-info {
-  display: grid;
-  padding-left: calc(var(--font-size-large) * 0.4);
-  grid-template-columns: auto 1fr max-content;
+  display: flex;
   align-items: center;
 }
 
 .item-info-comments {
   display: flex;
+  flex-grow: 1;
   justify-content: end;
   align-items: center;
 }
@@ -109,16 +111,19 @@ a:visited {
 .item-points,
 .user,
 .comments-link {
-  padding: calc(var(--font-size-normal) * 0.4);
+  padding: calc(var(--font-size-normal) * 0.4) 0;
 }
 
 .item-points {
-  padding-left: 0;
+  padding-left: var(--font-size-extra-large);
+}
+
+.user {
+  padding-left: calc(var(--font-size-normal) * 0.4);
 }
 
 .comments-link {
   text-align: right;
-  margin-right: calc(var(--font-size-normal) * 0.4);
   padding-left: calc(var(--font-size-normal) * 0.6);
   padding-right: calc(var(--font-size-normal) * 0.6);
   background-color: var(--text-background-accent);

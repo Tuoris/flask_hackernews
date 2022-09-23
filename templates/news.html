@@ -8,19 +8,21 @@
     <title>News</title>
   </head>
   <body>
-    {% for item in news %}
-    <div class="item">
-      <h2 class="item-title">
-        <a class="title-link" href="{{ item.url }}">{{ loop.index }}.{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
-      </h2>
-      <div class="item-info">
-        <span class="item-points">{{ item.points }} point{{ item.points|pluralize }}</span>
-        <span class="user">by <a href="https://news.ycombinator.com/user?id={{ item.user }}">{{ item.user }}</a> {{ item.time_ago }}</span>
-        <div class="item-info-comments">
-          <a class="comments-link" href="/{{ item.id }}"><span class="comments-count">{{ item.comments_count }}</span> comment{{ item.comments_count|pluralize }}</a>
+    <div class="items">
+      {% for item in news %}
+      <div class="item">
+        <h2 class="item-title">
+          <a class="title-link" href="{{ item.url }}">{{ loop.index }}.{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
+        </h2>
+        <div class="item-info">
+          <span class="item-points">{{ item.points }} pt{{ item.points|pluralize }}</span>
+          <span class="user">by <a href="https://news.ycombinator.com/user?id={{ item.user }}">{{ item.user }}</a> {{ item.time_ago }}</span>
+          <div class="item-info-comments">
+            <a class="comments-link" href="/{{ item.id }}"><span class="comments-count">{{ item.comments_count }}</span> comment{{ item.comments_count|pluralize }}</a>
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </body>
 </html>
