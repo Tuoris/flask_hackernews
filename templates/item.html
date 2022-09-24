@@ -1,58 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <title>{{ item.title }}</title>
-  </head>
-  <body>
-    <h1 class="item-title">
-      <a class="title-link" href="{{ item.url }}">{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
-    </h1>
-    <div class="item-content">
-      <span class="item-points">{{ item.points }} point{{ item.points|pluralize }}</span>
-      <span class="user">by <a href="https://news.ycombinator.com/user?id={{ item.user }}">{{ item.user }}</a> {{ item.time_ago }}</span>
-      <div class="comments">
-        <h2>{{ item.comments_count }} comment{{ item.comments_count|pluralize }}:</h2>
-        {% for comment in item.comments recursive %}
-        <div class="comment comment-level-{% if comment.level > 6 %}6{% else %}{{ comment.level }}{% endif %}">
-          <span class="comment-user">by <a href="https://news.ycombinator.com/user?id={{ comment.user }}">{{ comment.user }}</a> {{ comment.time_ago }}</span>
-          <div class="comment-content">{{ comment.content|safe }}</div>
+{% extends "base.html" %} {% block title %}{{ item.title }}{% endblock %} {% block content %}
+<h1 class="item-title single-item-title">
+  <a class="title-link" href="{{ item.url }}">{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
+</h1>
+<div class="item-content">
+  <span class="item-points">{{ item.points }} point{{ item.points|pluralize }}</span>
+  <span class="user">by <a href="https://news.ycombinator.com/user?id={{ item.user }}">{{ item.user }}</a> {{ item.time_ago }}</span>
+  <div class="comments">
+    <h2>{{ item.comments_count }} comment{{ item.comments_count|pluralize }}:</h2>
+    {% for comment in item.comments recursive %}
+    <div class="comment comment-level-{% if comment.level > 6 %}6{% else %}{{ comment.level }}{% endif %}">
+      <span class="comment-user">by <a href="https://news.ycombinator.com/user?id={{ comment.user }}">{{ comment.user }}</a> {{ comment.time_ago }}</span>
+      <div class="comment-content">{{ comment.content|safe }}</div>
 
-          <div class="comment-collapse">
-            <div class="comment-collapse-line"></div>
-            {% if comment.comments %} <button class="collapse-button" data-target-id="nested-commments-{{ comment.id }}">[-] comments</button> {% endif %}
-          </div>
-          {% if comment.comments %}
-          <div id="nested-commments-{{ comment.id }}">{{ loop(comment.comments) }}</div>
-          {% endif %}
-        </div>
-        {% endfor %}
+      <div class="comment-collapse">
+        <div class="comment-collapse-line"></div>
+        {% if comment.comments %} <button class="collapse-button" data-target-id="nested-commments-{{ comment.id }}">[-] comments</button> {% endif %}
       </div>
+      {% if comment.comments %}
+      <div id="nested-commments-{{ comment.id }}">{{ loop(comment.comments) }}</div>
+      {% endif %}
     </div>
-  </body>
-  <script>
-    document.querySelectorAll('.collapse-button').forEach((button) =>
-      button.addEventListener('click', () => {
-        const targetId = button.dataset.targetId;
-        const target = document.getElementById(targetId);
-        if (target.dataset.isCollapsed) {
-          target.style.display = 'block';
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  document.querySelectorAll('.collapse-button').forEach((button) =>
+    button.addEventListener('click', () => {
+      const targetId = button.dataset.targetId;
+      const target = document.getElementById(targetId);
+      if (target.dataset.isCollapsed) {
+        target.style.display = 'block';
 
-          button.innerText = button.dataset.previousText;
+        button.innerText = button.dataset.previousText;
 
-          delete target.dataset.isCollapsed;
-        } else {
-          target.style.display = 'none';
+        delete target.dataset.isCollapsed;
+      } else {
+        target.style.display = 'none';
 
-          button.dataset.previousText = button.innerText;
-          button.innerText = '[+] comments';
+        button.dataset.previousText = button.innerText;
+        button.innerText = '[+] comments';
 
-          target.dataset.isCollapsed = false;
-        }
-      })
-    );
-  </script>
-</html>
+        target.dataset.isCollapsed = false;
+      }
+    })
+  );
+</script>
+{% endblock scripts %}

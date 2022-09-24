@@ -1,9 +1,10 @@
 :root {
   font-size: 62.5%; /* (62.5/100) * 16px = 10px */
-  --font-size-small: 1rem;
-  --font-size-normal: 1.2rem;
-  --font-size-large: 1.35rem;
-  --font-size-extra-large: 1.8rem;
+  --font-scale: 1;
+  --font-size-small: calc(1rem * var(--font-scale));
+  --font-size-normal: calc(1.2rem * var(--font-scale));
+  --font-size-large: calc(1.35rem * var(--font-scale));
+  --font-size-extra-large: calc(1.8rem * var(--font-scale));
 
   --text-color: #050505;
   --text-background: #f6f6ef;
@@ -115,7 +116,7 @@ a:visited {
 }
 
 .item-points {
-  padding-left: var(--font-size-extra-large);
+  padding-left: var(--font-size-normal);
 }
 
 .user {
@@ -137,6 +138,10 @@ a:visited {
 .title-link,
 .comments-link {
   text-decoration: none;
+}
+
+.single-item-title {
+  padding: 0 0.5rem;
 }
 
 .item-content {
