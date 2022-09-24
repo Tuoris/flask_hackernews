@@ -74,6 +74,15 @@ a:visited {
   color: var(--text-color-muted);
 }
 
+.support-ukraine-link {
+  display: block;
+  border: 1px solid;
+  margin: 1em 2em;
+  padding: 1em 4em;
+  text-align: center;
+  font-size: var(--font-size-extra-large);
+}
+
 .items {
   padding: 0 0.5rem;
 }
