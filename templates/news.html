@@ -3,7 +3,7 @@
   {% for item in news %}
   <div class="item">
     <h2 class="item-title">
-      <a class="title-link" href="{{ item.url }}">{{ loop.index }}.{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
+      <a class="title-link" href="{{ item.url|fix_relative_link }}">{{ loop.index }}.{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
     </h2>
     <div class="item-info">
       <span class="item-points">{{ item.points }} pt{{ item.points|pluralize }}</span>

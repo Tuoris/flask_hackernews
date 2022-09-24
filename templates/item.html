@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}{{ item.title }}{% endblock %} {% block content %}
 <h1 class="item-title single-item-title">
-  <a class="title-link" href="{{ item.url }}">{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
+  <a class="title-link" href="{{ item.url|fix_relative_link }}">{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
 </h1>
 <div class="item-content">
   <span class="item-points">{{ item.points }} point{{ item.points|pluralize }}</span>

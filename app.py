@@ -1,4 +1,4 @@
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 import requests
 from flask import Flask, render_template
@@ -18,12 +18,28 @@ def pluralize(number, singular="", plural="s"):
 
 @app.template_filter("short_link")
 def short_link(full_link):
-    print(full_link)
     hostname = urlparse(full_link).hostname
     if hostname and hostname.startswith("www."):
         return hostname.strip("www.")
 
+    if not hostname:
+        return "ycombinator.com"
+
     return hostname
+
+
+@app.template_filter("fix_relative_link")
+def fix_relative_link(full_link):
+    parse_result = urlparse(full_link)
+    hostname = parse_result.hostname
+    if hostname:
+        return full_link
+
+    query_ids = parse_qs(parse_result.query).get("id")
+    if not query_ids:
+        return full_link
+
+    return f"/{query_ids[0]}"
 
 
 @app.route("/")
