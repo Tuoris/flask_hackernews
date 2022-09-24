@@ -15,5 +15,21 @@
       <a class="support-ukraine-link" href="https://u24.gov.ua/"> SUPPORT UKRAINE 🇺🇦 </a>
     </footer>
   </body>
+  <script type="text/javascript">
+    const FONT_SCALE_SETTINGS_FIELD = 'FONT_SCALE';
+
+    function getCurrentFontScale() {
+      const fontScale = window.localStorage.getItem(FONT_SCALE_SETTINGS_FIELD) || 1;
+      return fontScale;
+    }
+
+    function setFontScale(newFontScale) {
+      document.documentElement.style.setProperty('--font-scale', newFontScale);
+      window.localStorage.setItem(FONT_SCALE_SETTINGS_FIELD, newFontScale);
+    }
+
+    const fontScale = getCurrentFontScale();
+    document.documentElement.style.setProperty('--font-scale', fontScale);
+  </script>
   {% block scripts %}{% endblock %}
 </html>

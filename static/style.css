@@ -77,7 +77,7 @@ a:visited {
 .support-ukraine-link {
   display: block;
   border: 1px solid;
-  margin: 1em 2em;
+  margin: 2em 2em;
   padding: 1em 4em;
   text-align: center;
   font-size: var(--font-size-extra-large);
@@ -194,14 +194,21 @@ a:visited {
   overflow: visible;
 }
 
-.collapse-button {
+.collapse-button,
+.font-scale-button {
   appearance: none;
   border: none;
+  cursor: pointer;
   font-family: var(--font-family);
   background-color: var(--text-background-accent);
   font-size: var(--font-size-normal);
   padding: 0.4em 0.8em;
   margin-left: 0.4em;
+  border-radius: 0.2em;
+}
+
+#reset-font-size {
+  margin-left: 3em;
 }
 
 .comment-collapse-line {

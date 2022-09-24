@@ -18,6 +18,7 @@ def pluralize(number, singular="", plural="s"):
 
 @app.template_filter("short_link")
 def short_link(full_link):
+    print(full_link)
     hostname = urlparse(full_link).hostname
     if hostname and hostname.startswith("www."):
         return hostname.strip("www.")

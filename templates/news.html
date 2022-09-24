@@ -14,5 +14,33 @@
     </div>
   </div>
   {% endfor %}
+  <div id="settings">
+    <h2>Settings</h2>
+    <label id="font-scale-setting">Font size: </label>
+    <button type="button" class="font-scale-button" id="decrease-font-size" aria-description="Decrease font size">-</button>
+    Aa
+    <button type="button" class="font-scale-button" id="increase-font-size" aria-description="Increase font size">+</button>
+    <button type="button" class="font-scale-button" id="reset-font-size" aria-description="Reset font size">Reset</button>
+  </div>
 </div>
-{% endblock content %}
+{% endblock content %} {% block scripts %}
+<script type="text/javascript">
+  document.getElementById('decrease-font-size').addEventListener('click', () => {
+    const newFontScale = parseFloat(getCurrentFontScale()) - 0.1;
+    setFontScale(newFontScale);
+    event.target.scrollIntoView(true);
+  });
+
+  document.getElementById('increase-font-size').addEventListener('click', () => {
+    const newFontScale = parseFloat(getCurrentFontScale()) + 0.1;
+    setFontScale(newFontScale);
+    event.target.scrollIntoView(true);
+  });
+
+  document.getElementById('reset-font-size').addEventListener('click', () => {
+    const newFontScale = 1;
+    setFontScale(newFontScale);
+    event.target.scrollIntoView(true);
+  });
+</script>
+{% endblock scripts %}
