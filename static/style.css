@@ -75,10 +75,16 @@ a:visited {
   color: var(--text-color-muted);
 }
 
+#data-from-section {
+  margin: 1em 0;
+  padding: 1em 0.5rem;
+  font-weight: bold;
+}
+
 .support-ukraine-link {
   display: block;
   border: 1px solid;
-  margin: 2em 2em;
+  margin: 1em 2em;
   padding: 1em 4em;
   text-align: center;
   font-size: var(--font-size-extra-large);
