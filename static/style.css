@@ -59,7 +59,8 @@ h3 {
   font-size: var(--font-size-large);
 }
 
-a {
+a,
+button {
   color: var(--text-color);
 }
 
