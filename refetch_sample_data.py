@@ -15,7 +15,7 @@ def main():
     with open(NEWS_SAMPLE_FILENAME, "w") as news_page_file:
         dump(news_response.json(), news_page_file)
 
-    item_id = 32850178
+    item_id = 33022768
     item_response = requests.get(f"{ITEMS_API_URL}/{item_id}")
     with open(ITEM_SAMPLE_FILENAME, "w") as item_page_file:
         dump(item_response.json(), item_page_file)
