@@ -14,14 +14,15 @@
   <div class="comments">
     <h2>{{ item.comments_count }} comment{{ item.comments_count|pluralize }}:</h2>
     {% for comment in item.comments recursive %}
-    <div class="comment comment-level-{% if comment.level > 6 %}6{% else %}{{ comment.level }}{% endif %}">
+    <div class="comment comment-level-{% if comment.level > 6 %}6{% else %}{{ comment.level }} {% endif %}">
       <span class="comment-user">by <a href="https://news.ycombinator.com/user?id={{ comment.user }}">{{ comment.user
           }}</a> {{ comment.time_ago }}</span>
-      <div class="comment-content">{{ comment.content|safe }}</div>
+      <div class="comment-content" id="commment-content-{{comment.id }}">{{ comment.content|safe }}</div>
 
       <div class="comment-collapse">
         <div class="comment-collapse-line"></div>
-        {% if comment.comments %} <button class="collapse-button" data-target-id="nested-commments-{{ comment.id }}">[-]
+        {% if comment.comments %} <button class="collapse-button" data-target-id="nested-commments-{{ comment.id }}"
+          data-parent-id="commment-content-{{ comment.id }}">[-]
           comments</button> {% endif %}
       </div>
       {% if comment.comments %}
@@ -39,17 +40,26 @@
     button.addEventListener('click', () => {
       const targetId = button.dataset.targetId;
       const target = document.getElementById(targetId);
+
+      const parentId = button.dataset.parentId;
+      const parent = document.getElementById(parentId);
+
+      const nestedCommentsCount = target.querySelectorAll('.comment').length;
       if (target.dataset.isCollapsed) {
         target.style.display = 'block';
 
         button.innerText = button.dataset.previousText;
+
+        parent.classList.remove('comment-content-collapsed');
 
         delete target.dataset.isCollapsed;
       } else {
         target.style.display = 'none';
 
         button.dataset.previousText = button.innerText;
-        button.innerText = '[+] comments';
+        button.innerText = `[+] ${nestedCommentsCount} comments`;
+
+        parent.classList.add('comment-content-collapsed');
 
         target.dataset.isCollapsed = false;
       }

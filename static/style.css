@@ -201,6 +201,12 @@ a:visited {
   overflow: visible;
 }
 
+.comment-content-collapsed {
+  height: 2em;
+  overflow: hidden;
+  opacity: 0.5;
+}
+
 .collapse-button,
 .font-scale-button {
   appearance: none;
@@ -212,6 +218,11 @@ a:visited {
   padding: 0.4em 0.8em;
   margin-left: 0.4em;
   border-radius: 0.2em;
+}
+
+.collapse-button {
+  position: relative;
+  z-index: 1;
 }
 
 #reset-font-size {
