@@ -1,20 +1,28 @@
-{% extends "base.html" %} {% block title %}{{ item.title }}{% endblock %} {% block content %}
+{% extends "base.html" %}
+
+{% block title %}{{ item.title }}{% endblock %}
+
+{% block content %}
 <h1 class="item-title single-item-title">
-  <a class="title-link" href="{{ item.url|fix_relative_link }}">{{ item.title }} <span class="short-link">({{ item.url|short_link }})</span></a>
+  <a class="title-link" href="{{ item.url|fix_relative_link }}">{{ item.title }} <span class="short-link">({{
+      item.url|short_link }})</span></a>
 </h1>
 <div class="item-content">
   <span class="item-points">{{ item.points }} point{{ item.points|pluralize }}</span>
-  <span class="user">by <a href="https://news.ycombinator.com/user?id={{ item.user }}">{{ item.user }}</a> {{ item.time_ago }}</span>
+  <span class="user">by <a href="https://news.ycombinator.com/user?id={{ item.user }}">{{ item.user }}</a> {{
+    item.time_ago }}</span>
   <div class="comments">
     <h2>{{ item.comments_count }} comment{{ item.comments_count|pluralize }}:</h2>
     {% for comment in item.comments recursive %}
     <div class="comment comment-level-{% if comment.level > 6 %}6{% else %}{{ comment.level }}{% endif %}">
-      <span class="comment-user">by <a href="https://news.ycombinator.com/user?id={{ comment.user }}">{{ comment.user }}</a> {{ comment.time_ago }}</span>
+      <span class="comment-user">by <a href="https://news.ycombinator.com/user?id={{ comment.user }}">{{ comment.user
+          }}</a> {{ comment.time_ago }}</span>
       <div class="comment-content">{{ comment.content|safe }}</div>
 
       <div class="comment-collapse">
         <div class="comment-collapse-line"></div>
-        {% if comment.comments %} <button class="collapse-button" data-target-id="nested-commments-{{ comment.id }}">[-] comments</button> {% endif %}
+        {% if comment.comments %} <button class="collapse-button" data-target-id="nested-commments-{{ comment.id }}">[-]
+          comments</button> {% endif %}
       </div>
       {% if comment.comments %}
       <div id="nested-commments-{{ comment.id }}">{{ loop(comment.comments) }}</div>
@@ -23,7 +31,9 @@
     {% endfor %}
   </div>
 </div>
-{% endblock %} {% block scripts %}
+{% endblock content %}
+
+{% block scripts %}
 <script type="text/javascript">
   document.querySelectorAll('.collapse-button').forEach((button) =>
     button.addEventListener('click', () => {
