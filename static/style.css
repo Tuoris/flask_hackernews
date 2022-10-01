@@ -160,8 +160,12 @@ a:visited {
   padding: 0 0.5rem;
 }
 
-.item-content {
+.item {
   padding: 0 0.5rem;
+}
+
+.item-content {
+  border-bottom: 1px solid;
 }
 
 .comment {

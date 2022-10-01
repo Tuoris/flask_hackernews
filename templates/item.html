@@ -7,10 +7,11 @@
   <a class="title-link" href="{{ item.url|fix_relative_link }}">{{ item.title }} <span class="short-link">({{
       item.url|short_link }})</span></a>
 </h1>
-<div class="item-content">
+<div class="item">
   <span class="item-points">{{ item.points }} point{{ item.points|pluralize }}</span>
   <span class="user">by <a href="https://news.ycombinator.com/user?id={{ item.user }}">{{ item.user }}</a> {{
     item.time_ago }}</span>
+  <div class="item-content">{{ item.content|safe }}</div>
   <div class="comments">
     <h2>{{ item.comments_count }} comment{{ item.comments_count|pluralize }}:</h2>
     {% for comment in item.comments recursive %}
