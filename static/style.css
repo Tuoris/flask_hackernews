@@ -125,6 +125,10 @@ a:visited {
   align-items: center;
 }
 
+.comments {
+  padding: 0 0.5rem;
+}
+
 .item-points,
 .user,
 .comments-link {
@@ -160,12 +164,9 @@ a:visited {
   padding: 0 0.5rem;
 }
 
-.item {
-  padding: 0 0.5rem;
-}
-
 .item-content {
   border-bottom: 1px solid;
+  padding-bottom: 1em;
 }
 
 .comment {
@@ -235,7 +236,6 @@ a:visited {
 
 .comment-collapse-line {
   flex-grow: 1;
-  border: 1px solid transparent;
-  border-bottom: 0.1em solid var(--text-color-muted);
+  border-bottom: 1px solid;
   height: 0px;
 }
