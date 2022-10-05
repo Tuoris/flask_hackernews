@@ -94,7 +94,7 @@ a:visited {
   padding: 0 0.5rem;
 }
 
-.item {
+.items .item {
   border-bottom: 1px solid var(--text-color-muted);
 }
 
